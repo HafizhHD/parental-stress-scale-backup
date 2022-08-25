@@ -15,13 +15,77 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
   color: white;
+}
+
+.App-body {
+  padding: 5px;
+  padding-top: 10%;
+}
+
+.App-body-intro h3{
+  padding: 5vh 0;
+}
+
+.App-body-choice h3 {
+  padding: 2vh 0;
+}
+
+.App-body-choice-select {
+  display: flex;
+  flex-direction: column;
+  padding: 0 35%;
+}
+
+@media only screen and (max-width: 819px) {
+  .App-body-choice-select {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20%;
+  }
+}
+
+@media only screen and (max-width: 411px) {
+  .App-body-choice-select {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10%;
+  }
+}
+
+.App-body-choice-select label {
+  text-align: left;
+}
+
+button {
+  outline: none;
+  border: none;
+  padding: 12px;
+  color: white;
+  border-radius: 10px;
+  font-size: 30px;
+  margin: 20px;
+}
+
+#start {
+  background-color: #8888EE;
+}
+
+#next {
+  background-color: #77DD77;
+}
+
+#submit {
+  background-color: green;
+}
+
+#restart {
+  background-color: orange;
 }
 
 .App-link {
