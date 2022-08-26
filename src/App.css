@@ -65,11 +65,11 @@
 button {
   outline: none;
   border: none;
-  padding: 12px;
+  padding: 8px;
   color: white;
   border-radius: 10px;
-  font-size: 30px;
-  margin: 20px;
+  font-size: 24px;
+  margin: 15px;
 }
 
 #start {
@@ -80,7 +80,7 @@ button {
   background-color: #77DD77;
 }
 
-#submit {
+#submit, #download{
   background-color: green;
 }
 
