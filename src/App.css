@@ -28,12 +28,12 @@
   padding-top: 10%;
 }
 
-.App-body-intro h3{
-  padding: 5vh 0;
+.App-body-intro h4{
+  padding: 0 20%;
 }
 
 .App-body-choice h3 {
-  padding: 2vh 0;
+  padding: 2vh 20%;
 }
 
 .App-body-choice-select {
