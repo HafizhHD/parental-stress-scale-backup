@@ -18,7 +18,7 @@ function App() {
   const [pgIdx, setPgIdx] = useState(1);
   const [score, setScore] = useState([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
   const [finalScore, setFinalScore] = useState(0);
-  const [question, setQuestion] = useState(0);
+  const [question, setQuestion] = useState(-1);
   const [title, setTitle] = useState("Saya Mendapat Nilai 0 pada Gadget Internet and Game Addiction Test")
   const [name, setName] = useState('');
   const [kelas, setKelas] = useState(1);
@@ -190,8 +190,7 @@ function App() {
           <h5>{"dr. Lahargo Kembaren SpJk, Psikiater dan Kepala Instalasi Rehabilitasi Psikososial RS. Jiwa dr. H. Marzoeki Mahdi, Bogor"}</h5>
         </div></div> :
       pgIdx === 2 ? 
-      <div className="App-body-choice">
-        {question === 0 ? <div className="App-body-intro-form">
+        question === -1 ? <div className="App-body-choice"><div className="App-body-intro-form">
           <div className="App-body-intro-form-left">
             <p>Nama:</p>
             <p>Kelas:</p>
@@ -212,7 +211,11 @@ function App() {
               setSekolah(e.currentTarget.value);
             }}/>
           </div>
-        </div> : null}
+        </div>
+        <button id="next" onClick={()=> {
+          setQuestion(question+1);
+        }}>Berikutnya</button></div> : 
+        <div className="App-body-choice">
         <h3>{(question+1) + ". " + questionSets[question]}</h3>
         <div className="App-body-choice-select" onChange={(e) => {
           var p = score.slice();
@@ -252,7 +255,7 @@ function App() {
           : "Penggunaan gadget/internet anda menyebabkan masalah yang sangat besar bagi kehidupan anda. Mulailah memahami apakah anda mempunyai masalah dalam menjalani hidup dan penggunan gadget/internet yang berlebih justru hanya akan menambah parah keadaan anda. Segeralah mencari pertolongan, ada baiknya anda berkonsultasi dengan psikiater di kota anda."}</h4>
         <button id="download" onClick={download}>Download Hasil</button>
         <button id="restart" onClick={()=> {
-          setQuestion(0);
+          setQuestion(-1);
           setPgIdx(1);
         }}>Ulang</button>
 
