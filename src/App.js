@@ -245,7 +245,7 @@ function App() {
       </div> :
       <div className="App-body-result">
         <h3>Tingkat ketergantungan Anda:</h3>
-        <ProgressBar key={1} bgcolor={finalScore <= 49 ? "green" : finalScore <= 79 ? "yellow" : "red"} completed={Math.floor((finalScore-20)*10/8)} />
+        {/* <ProgressBar key={1} bgcolor={finalScore <= 49 ? "green" : finalScore <= 79 ? "yellow" : "red"} completed={Math.floor((finalScore-20)*10/8)} /> */}
         <h2>{finalScore <= 49 ? "Rendah" : finalScore <= 79 ? "Sedang" : "Berat"}.</h2>
         <h4>{finalScore <= 49 ? "Anda adalah pengguna gadget/internet sebagaimana umumnya. Anda mungkin terkadang menggunakan gadget/internet sedikit agak lama namun anda masih bisa mengontrolnya."
           : finalScore <= 79 ? "Anda terkadang mengalami permasalahan dengan penggunaan gadget/internet yang berlebihan. Anda harus mulai mempertimbangkan dampak buruknya bagi anda."
