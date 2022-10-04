@@ -45,14 +45,23 @@ function App() {
     "Saya merasa anak-anak saya membuat saya senang"
   ]
 
-  const shareUrl = (window.location != window.parent.location)
+  const testUrl = (window.location != window.parent.location)
   ? document.referrer + "tes-tingkat-stres-orang-tua/"
   : document.location.href + "tes-tingkat-stres-orang-tua/";
+
+  const shareUrl = (window.location != window.parent.location)
+  ? document.referrer
+  : document.location.href;
 
   const downloadUrl = shareUrl.match("asia") ? "https://play.google.com/store/apps/details?id=com.byasia.ruangortu" :
     shareUrl.match("roi") ? "https://play.google.com/store/apps/details?id=com.roi.ruangortu" : 
     shareUrl.match("hkbp") ? "https://play.google.com/store/apps/details?id=com.keluargahkbp" :
-    shareUrl.match("lindungi") ? "https://play.google.com/store/apps/details?id=com.lindungianak.ruangortu" : "https://play.google.com/store/apps/details?id=com.ruangortu"
+    shareUrl.match("family") ? "https://play.google.com/store/apps/details?id=com.lindungianak.ruangortu" : "https://play.google.com/store/apps/details?id=com.ruangortu"
+
+  const hashtag = shareUrl.match("asia") ? "#ruangortubyasia" :
+    shareUrl.match("roi") ? "#ruangortuindonesia" : 
+    shareUrl.match("hkbp") ? "#keluargahkbp" :
+    shareUrl.match("family") ? "#ruangkeluarga" : "#ruangortu"
 
   const download = () => {
     var doc = new jsPDF();
@@ -118,9 +127,9 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>Tes Tingkat Stres Orang Tua</h1>
-      </header>
+      </header> */}
       <div className="App-body">
 
       {pgIdx === 1 ? 
@@ -159,7 +168,7 @@ function App() {
           score.forEach(element => {
             x+=element;
           });
-          setTitle("Saya, sebagai orang tua telah ikuti tes tingkat stress pengasuhan anak dan mendapat nilai " + x + ". Coba cek tingkat stres kamu di " + shareUrl + " - dan Download aplikasi Digital Parenting di " + downloadUrl + ".\n");
+          setTitle("Saya, sebagai orang tua telah ikuti tes tingkat stress pengasuhan anak dan mendapat nilai " + x + ". Coba cek tingkat stres kamu di " + testUrl + " - dan Download aplikasi Digital Parenting di " + downloadUrl + ".\n" + hashtag);
           setFinalScore(x);
           setPgIdx(3);
         }}>Submit</button>
