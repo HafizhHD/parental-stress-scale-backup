@@ -31,6 +31,27 @@
   padding: 0 20%;
 }
 
+.App-body-intro-form{
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+
+.App-body-intro-form-left p{
+  text-align: right;
+  margin-block-start: 0;
+  margin-block-end: 0.5em;
+  padding-right: 2%;
+}
+
+.App-body-intro-form-right {
+  padding-left: 2%;
+  text-align: left;
+  display: grid;
+  width: max-content;
+  grid-template-rows: repeat(3, max-content);
+  grid-row-gap: 0.5em;
+}
+
 .App-body-intro-bottom{
   margin: 50px 0;
 }
@@ -55,6 +76,10 @@
 .App-body-result h2 {
   font-size: 2.5rem;
   margin: 0;
+}
+
+.App-body-result h4 {
+  padding: 0 20%;
 }
 
 @media only screen and (max-width: 819px) {

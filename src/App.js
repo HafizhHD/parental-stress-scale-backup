@@ -20,6 +20,9 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [question, setQuestion] = useState(0);
   const [title, setTitle] = useState("Saya Mendapat Nilai 0 pada Gadget Internet and Game Addiction Test")
+  const [name, setName] = useState('');
+  const [kelas, setKelas] = useState(1);
+  const [sekolah, setSekolah] = useState('');
   const answers = ["Jarang", "Kadang-Kadang", "Sering", "Sangat Sering", "Selalu"];
   const ansScore = [1, 2, 3, 4, 5];
 
@@ -46,14 +49,28 @@ function App() {
     "Seberapa sering Anda merasa depresi, tidak mood, atau grogi (nervous) saat Anda offline, yang mana akan hilang seketika ketika Anda kembali online/ bermain gadget/game?"
   ]
 
-  const shareUrl = (window.location != window.parent.location)
-  ? document.referrer + "gadget-internet-and-game-addiction-test/"
-  : document.location.href + "gadget-internet-and-game-addiction-test/";
+  const testUrl = (window.location != window.parent.location)
+  ? document.referrer + "mengukur-tingkat-kecanduan-gadget-internet-anda/"
+  : document.location.href + "mengukur-tingkat-kecanduan-gadget-internet-anda/";
 
-  const downloadUrl = shareUrl.match("asia") ? "https://play.google.com/store/apps/details?id=com.byasia.ruangortu" :
-    shareUrl.match("roi") ? "https://play.google.com/store/apps/details?id=com.roi.ruangortu" : 
-    shareUrl.match("hkbp") ? "https://play.google.com/store/apps/details?id=com.keluargahkbp" :
-    shareUrl.match("lindungi") ? "https://play.google.com/store/apps/details?id=com.lindungianak.ruangortu" : "https://play.google.com/store/apps/details?id=com.ruangortu"
+  const shareUrl = (window.location != window.parent.location)
+  ? document.referrer
+  : document.location.href
+
+  // const downloadUrl = shareUrl.match("asia") ? "https://play.google.com/store/apps/details?id=com.byasia.ruangortu" :
+  //   shareUrl.match("roi") ? "https://play.google.com/store/apps/details?id=com.roi.ruangortu" : 
+  //   shareUrl.match("hkbp") ? "https://play.google.com/store/apps/details?id=com.keluargahkbp" :
+  //   shareUrl.match("family") ? "https://play.google.com/store/apps/details?id=com.lindungianak.ruangortu" : "https://play.google.com/store/apps/details?id=com.ruangortu"
+
+  const hashtag = shareUrl.match("asia") ? "#ruangortubyasia" :
+    shareUrl.match("roi") ? "#ruangortuindonesia" : 
+    shareUrl.match("hkbp") ? "#keluargahkbp" :
+    shareUrl.match("family") ? "#ruangkeluarga" : "#ruangortu"
+
+  const webName = shareUrl.match("asia") ? "Ruang ORTU by ASIA" :
+    shareUrl.match("roi") ? "Ruang Ortu Indonesia" : 
+    shareUrl.match("hkbp") ? "Keluarga HKBP" :
+    shareUrl.match("family") ? "Ruang Keluarga" : "Ruang Ortu"
 
   const download = () => {
     var doc = new jsPDF();
@@ -102,6 +119,41 @@ function App() {
     doc.save('Hasil_Gadget_Internet_and_Game_Addiction_Test.pdf');
   }
 
+  const ProgressBar = (props) => {
+    const { bgcolor, completed } = props;
+  
+    const containerStyles = {
+      height: 20,
+      width: '60%',
+      backgroundColor: "#e0e0de",
+      borderRadius: 50,
+      marginLeft: '20%',
+      marginRight: '20%'
+    }
+  
+    const fillerStyles = {
+      height: '100%',
+      width: `${completed}%`,
+      backgroundColor: bgcolor,
+      borderRadius: 'inherit',
+      textAlign: 'right'
+    }
+  
+    const labelStyles = {
+      padding: 5,
+      color: 'black',
+      fontWeight: 'bold'
+    }
+  
+    return (
+      <div style={containerStyles}>
+        <div style={fillerStyles}>
+          <span style={labelStyles}>{completed}%</span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -118,17 +170,41 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>Gadget Internet and Game Addiction Test</h1>
-      </header>
+      </header> */}
       <div className="App-body">
 
       {pgIdx === 1 ? 
         <div className="App-body-intro">
-          <h4>Ponsel pintar atau gadget merupakan salah satu penyebab banyak orang lupa waktu saat sudah menggunakannya. Para ahli juga telah mengungkapkan bahaya ketagihan gadget. Namun, durasi penggunaan seperti apakah yang sudah bisa dianggap kecanduan?</h4>
-          <h4>Apakah menggunakan gadget lebih dari 3 jam setiap hari sudah masuk kategori kecanduan? Menurut David Greenfeld, asisten profesor psikologi dari Connecticut Schol of Medicine, tidak ada pedoman dasar untuk mengukur tingkat kecanduan pada gadget.</h4>
-          <h4>Meski begitu, ia dan timnya mengembangkan sebuah tes berupa 15 pertanyaan untuk mengukur tingkat ketergantungan seseorang pada gadget. Tes yang disebut Smartphone Compulsion Test ini dibuat dari pengamatan selama 12 tahun.</h4>
-          <h4>Mari kita bagikan link ini ke keluarga dan handai taulan kita, juga ikuti test ini, dan bagikan hasilnya ke mereka melalui sosial media dan instant messaging.</h4>
+          <h4>Kecanduan sering kali membuat orang tidak menyadari apa yang sedang terjadi pada dirinya. Demikian juga pengguna gadget (gawai), juga acap tak menyadari bahwa sebenarnya dia sedang kecanduan.</h4>
+          <h4>Kondisi itu bermasalah. Menurut para ahli, kecanduan gadget bisa menyebabkan efek euforia yang sama dengan perilaku kecanduan lainnya, seperti berjudi atau melihat tontonan pornografi.</h4>
+          <h4>Berdasarkan hasil penelitian, kecanduan gadget dapat mengubah zat kimia otak yang pada akhirnya memengaruhi kondisi fisik, psikologis, dan perilaku seseorang.</h4>
+          <h4>Seseorang dikatakan sudah kecanduan gadget, apabila sebagian besar waktunya dihabiskan untuk menggunakan gadget, seperti smartphone, tablet, laptop, atau portable gaming device.</h4>
+          <h4>Istilah untuk kondisi ini adalah nomophobia (no mobile phobia), yang berarti ketakutan untuk aktivitas sehari-hari tanpa smartphone maupun gadget dalam bentuk lainnya.</h4>
+          <h4>Anda dapat mengukur tingkat kecanduan terhadap gadget dengan menjawab pertanyaan-pertanyaan berikut:</h4>
+          <div className="App-body-intro-form">
+            <div className="App-body-intro-form-left">
+              <p>Nama:</p>
+              <p>Kelas:</p>
+              <p>Sekolah:</p>
+            </div>
+            <div className="App-body-intro-form-right">
+              <input type="text" placeholder="Nama" name="name" value={name} onChange={(e) => {
+                setName(e.currentTarget.value);
+              }}/>
+              <select value={kelas} onChange={(e) => {
+                setKelas(e.currentTarget.value);
+              }}>
+                {[1,2,3,4,5,6,7,8,9,10,11,12].map(x => {
+                  return <option value={x}>{x}</option>
+                })}
+              </select>
+              <input type="text" placeholder="SD Contoh 1" name="sekolah" value={sekolah} onChange={(e) => {
+                setSekolah(e.currentTarget.value);
+              }}/>
+            </div>
+          </div>
           <button id="start" onClick={()=> {
             setPgIdx(2);
           }}>Mulai</button>
@@ -160,18 +236,20 @@ function App() {
           score.forEach(element => {
             x+=element;
           });
-          setTitle("Saya telah mengikuti Gadget Internet and Game Addiction Test dan mendapat nilai " + x + ". Coba cek tingkat ketergantungan kamu di " + shareUrl + " - dan Download aplikasi Digital Parenting di " + downloadUrl + ".\n");
+          let candu = finalScore <= 49 ? "Rendah" : finalScore <= 79 ? "Sedang" : "Berat"
+          setTitle("Saya, " + name + ", Kelas " + kelas.toString() + ", sekolah di " + sekolah + ", telah mengikuti test kecanduan gadget di " + webName + ".\nHasilnya Kecanduan " + candu + ".\nApa hasil tes kamu? Klik " + testUrl + " untuk melakukan tes kecanduan gadget.\nTerima kasih.\n" + hashtag);
           setFinalScore(x);
           setPgIdx(3);
         }}>Submit</button>
       }
       </div> :
       <div className="App-body-result">
-        <p>Nilai Anda:</p>
-        <h2>{finalScore}</h2>
-        <h3>Tingkat ketergantungan Anda {finalScore <= 49 ? "Rendah" : finalScore <= 79 ? "Sedang" : "Berat"}.</h3>
-        <h4>Semakin tinggi nilai Anda, semakin tinggi ketergantungan Anda terhadap Gadget Internet dan Game.</h4>
-        <h4>Nilai Minimum: 20, Nilai Maksimum: 100</h4>
+        <h3>Tingkat ketergantungan Anda:</h3>
+        <ProgressBar key={1} bgcolor={finalScore <= 49 ? "green" : finalScore <= 79 ? "yellow" : "red"} completed={Math.floor((finalScore-20)*10/8)} />
+        <h2>{finalScore <= 49 ? "Rendah" : finalScore <= 79 ? "Sedang" : "Berat"}.</h2>
+        <h4>{finalScore <= 49 ? "Anda adalah pengguna gadget/internet sebagaimana umumnya. Anda mungkin terkadang menggunakan gadget/internet sedikit agak lama namun anda masih bisa mengontrolnya."
+          : finalScore <= 79 ? "Anda terkadang mengalami permasalahan dengan penggunaan gadget/internet yang berlebihan. Anda harus mulai mempertimbangkan dampak buruknya bagi anda."
+          : "Penggunaan gadget/internet anda menyebabkan masalah yang sangat besar bagi kehidupan anda. Mulailah memahami apakah anda mempunyai masalah dalam menjalani hidup dan penggunan gadget/internet yang berlebih justru hanya akan menambah parah keadaan anda. Segeralah mencari pertolongan, ada baiknya anda berkonsultasi dengan psikiater di kota anda."}</h4>
         <button id="download" onClick={download}>Download Hasil</button>
         <button id="restart" onClick={()=> {
           setQuestion(0);
@@ -198,7 +276,7 @@ function App() {
           <WhatsappShareButton
             url={shareUrl}
             title={title}
-            separator=":: "
+            separator=" "
             className="App-body-result-share-button"
           >
             <WhatsappIcon size={32} round />
