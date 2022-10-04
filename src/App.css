@@ -34,6 +34,7 @@
 .App-body-intro-form{
   display: grid;
   grid-template-columns: 45% 55%;
+  padding: 0 15%;
 }
 
 .App-body-intro-form-left p{
@@ -83,6 +84,12 @@
 }
 
 @media only screen and (max-width: 819px) {
+  .App-body-intro h4{
+    padding: 0 10%;
+  }
+  .App-body-choice h3 {
+    padding: 2vh 10%;
+  }
   .App-body-choice-select {
     display: flex;
     flex-direction: column;
@@ -91,6 +98,12 @@
 }
 
 @media only screen and (max-width: 411px) {
+  .App-body-intro h4{
+    padding: 0 5%;
+  }
+  .App-body-choice h3 {
+    padding: 2vh 5%;
+  }
   .App-body-choice-select {
     display: flex;
     flex-direction: column;

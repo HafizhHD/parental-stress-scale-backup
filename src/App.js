@@ -113,8 +113,8 @@ function App() {
 
     doc.setFontSize(8);
     doc.setFont(undefined, 'italic');
-    doc.text(20, doc.lastAutoTable.finalY + 27, "Referensi: Dr. David Greenfield, Center for Internet and Technology Addiction.");
-    doc.text(34, doc.lastAutoTable.finalY + 30, "(Modified by dr.Lahargo Kembaren, SpKJ)");
+    doc.text(20, doc.lastAutoTable.finalY + 27, "Referensi: dr. Lahargo Kembaren SpJk, Psikiater dan Kepala Instalasi Rehabilitasi Psikososial");
+    doc.text(34, doc.lastAutoTable.finalY + 30, "RS. Jiwa dr. H. Marzoeki Mahdi, Bogor");
     
     doc.save('Hasil_Gadget_Internet_and_Game_Addiction_Test.pdf');
   }
@@ -183,36 +183,36 @@ function App() {
           <h4>Seseorang dikatakan sudah kecanduan gadget, apabila sebagian besar waktunya dihabiskan untuk menggunakan gadget, seperti smartphone, tablet, laptop, atau portable gaming device.</h4>
           <h4>Istilah untuk kondisi ini adalah nomophobia (no mobile phobia), yang berarti ketakutan untuk aktivitas sehari-hari tanpa smartphone maupun gadget dalam bentuk lainnya.</h4>
           <h4>Anda dapat mengukur tingkat kecanduan terhadap gadget dengan menjawab pertanyaan-pertanyaan berikut:</h4>
-          <div className="App-body-intro-form">
-            <div className="App-body-intro-form-left">
-              <p>Nama:</p>
-              <p>Kelas:</p>
-              <p>Sekolah:</p>
-            </div>
-            <div className="App-body-intro-form-right">
-              <input type="text" placeholder="Nama" name="name" value={name} onChange={(e) => {
-                setName(e.currentTarget.value);
-              }}/>
-              <select value={kelas} onChange={(e) => {
-                setKelas(e.currentTarget.value);
-              }}>
-                {[1,2,3,4,5,6,7,8,9,10,11,12].map(x => {
-                  return <option value={x}>{x}</option>
-                })}
-              </select>
-              <input type="text" placeholder="SD Contoh 1" name="sekolah" value={sekolah} onChange={(e) => {
-                setSekolah(e.currentTarget.value);
-              }}/>
-            </div>
-          </div>
           <button id="start" onClick={()=> {
             setPgIdx(2);
           }}>Mulai</button>
           <div className="App-body-intro-bottom"><h5>Referensi:</h5>
-          <h5>{"Dr. David Greenfield, Center for Internet and Technology Addiction. (Modified by dr.Lahargo Kembaren, SpKJ)"}</h5>
+          <h5>{"dr. Lahargo Kembaren SpJk, Psikiater dan Kepala Instalasi Rehabilitasi Psikososial RS. Jiwa dr. H. Marzoeki Mahdi, Bogor"}</h5>
         </div></div> :
       pgIdx === 2 ? 
       <div className="App-body-choice">
+        {question === 0 ? <div className="App-body-intro-form">
+          <div className="App-body-intro-form-left">
+            <p>Nama:</p>
+            <p>Kelas:</p>
+            <p>Sekolah:</p>
+          </div>
+          <div className="App-body-intro-form-right">
+            <input type="text" placeholder="Nama" name="name" value={name} onChange={(e) => {
+              setName(e.currentTarget.value);
+            }}/>
+            <select value={kelas} onChange={(e) => {
+              setKelas(e.currentTarget.value);
+            }}>
+              {[1,2,3,4,5,6,7,8,9,10,11,12].map(x => {
+                return <option value={x}>{x}</option>
+              })}
+            </select>
+            <input type="text" placeholder="SD Contoh 1" name="sekolah" value={sekolah} onChange={(e) => {
+              setSekolah(e.currentTarget.value);
+            }}/>
+          </div>
+        </div> : null}
         <h3>{(question+1) + ". " + questionSets[question]}</h3>
         <div className="App-body-choice-select" onChange={(e) => {
           var p = score.slice();
@@ -291,7 +291,7 @@ function App() {
           </TelegramShareButton>
         </div>
         <div className="App-body-result-bottom"><h5>Referensi:</h5>
-          <h5>{"Dr. David Greenfield, Center for Internet and Technology Addiction. (Modified by dr.Lahargo Kembaren, SpKJ)"}</h5>
+          <h5>{"dr. Lahargo Kembaren SpJk, Psikiater dan Kepala Instalasi Rehabilitasi Psikososial RS. Jiwa dr. H. Marzoeki Mahdi, Bogor"}</h5>
         </div>
       </div>
       }
