@@ -27,7 +27,7 @@ function App() {
   const ansScore = [1, 2, 3, 4, 5];
 
   const questionSets = [
-    "Seberapa sering Anda menggunakan gadget/internet/game/sosmed dengan lama yang melebihi waktu yang Anda inginkan? (Misalnya Anda hanya ingin online 1 jam, ternyata setelah berinternet/bermain game jadinya online 3 jam. Kondisi seperti ini seberapa sering Anda alami?)",
+    "Seberapa sering Anda menggunakan gadget/internet/game/sosmed dengan lama yang melebihi waktu yang Anda inginkan? (Misalnya Anda hanya ingin online 1 jam, ternyata setelah berinternet/bermain gadget/game/sosmed jadinya online 3 jam. Kondisi seperti ini seberapa sering Anda alami?)",
     "Seberapa sering Anda mengabaikan pekerjaan di rumah karena ingin online/ bermain gadget/game/sosmed lebih lama?",
     "Seberapa sering Anda lebih memilih kesenangan berinternet/ bermain gadget/internet/game/sosmed dibanding bercengkerama/ berkumpul dengan keluarga?",
     "Seberapa sering Anda menjalin hubungan baru dengan pengguna gadget/internet/game/sosmed yang bersahabat?",
