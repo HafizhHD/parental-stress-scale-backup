@@ -250,9 +250,9 @@ function App() {
         <h3>Tingkat ketergantungan Anda:</h3>
         {/* <ProgressBar key={1} bgcolor={finalScore <= 49 ? "green" : finalScore <= 79 ? "yellow" : "red"} completed={Math.floor((finalScore-20)*10/8)} /> */}
         <h2>{finalScore <= 49 ? "Rendah" : finalScore <= 79 ? "Sedang" : "Berat"}.</h2>
-        <h4>{finalScore <= 49 ? "Anda adalah pengguna gadget/internet sebagaimana umumnya. Anda mungkin terkadang menggunakan gadget/internet sedikit agak lama namun anda masih bisa mengontrolnya."
-          : finalScore <= 79 ? "Anda terkadang mengalami permasalahan dengan penggunaan gadget/internet yang berlebihan. Anda harus mulai mempertimbangkan dampak buruknya bagi anda."
-          : "Penggunaan gadget/internet anda menyebabkan masalah yang sangat besar bagi kehidupan anda. Mulailah memahami apakah anda mempunyai masalah dalam menjalani hidup dan penggunan gadget/internet yang berlebih justru hanya akan menambah parah keadaan anda. Segeralah mencari pertolongan, ada baiknya anda berkonsultasi dengan psikiater di kota anda."}</h4>
+        <h4>{finalScore <= 49 ? "Anda adalah pengguna gadget/internet/game/sosmed sebagaimana umumnya. Anda mungkin terkadang menggunakan gadget/internet/game/sosmed sedikit agak lama namun anda masih bisa mengontrolnya."
+          : finalScore <= 79 ? "Anda terkadang mengalami permasalahan dengan penggunaan gadget/internet/game/sosmed yang berlebihan. Anda harus mulai mempertimbangkan dampak buruknya bagi anda."
+          : "Penggunaan gadget/internet/game/sosmed anda menyebabkan masalah yang sangat besar bagi kehidupan anda. Mulailah memahami apakah anda mempunyai masalah dalam menjalani hidup dan penggunan gadget/internet/game/sosmed yang berlebih justru hanya akan menambah parah keadaan anda. Segeralah mencari pertolongan, ada baiknya anda berkonsultasi dengan psikiater di kota anda."}</h4>
         <button id="download" onClick={download}>Download Hasil</button>
         <button id="restart" onClick={()=> {
           setQuestion(-1);
