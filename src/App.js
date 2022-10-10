@@ -29,11 +29,11 @@ function App() {
   const questionSets = [
     "Seberapa sering Anda menggunakan gadget/internet/game/sosmed dengan lama yang melebihi waktu yang Anda inginkan? (Misalnya Anda hanya ingin online 1 jam, ternyata setelah berinternet/bermain gadget/game/sosmed jadinya online 3 jam. Kondisi seperti ini seberapa sering Anda alami?)",
     "Seberapa sering Anda mengabaikan pekerjaan di rumah karena ingin online/ bermain gadget/game/sosmed lebih lama?",
-    "Seberapa sering Anda lebih memilih kesenangan berinternet/ bermain gadget/internet/game/sosmed dibanding bercengkerama/ berkumpul dengan keluarga?",
+    "Seberapa sering Anda lebih memilih kesenangan berinternet/ bermain gadget/game/sosmed dibanding bercengkerama/ berkumpul dengan keluarga?",
     "Seberapa sering Anda menjalin hubungan baru dengan pengguna gadget/internet/game/sosmed yang bersahabat?",
     "Seberapa sering orang-orang terdekat Anda (orang tua, suami/istri, saudara, teman akrab) menegur/mengeluh tentang waktu yang Anda habiskan di dunia online/bermain gadget/game?",
     "Seberapa sering tugas kantor atau tugas sekolah/kuliah Anda terbengkalai karena waktu yang Anda habiskan dengan berinternet/bermain gadget/game/sosmed?",
-    "Seberapa sering Anda mengecek gadget/email/internet/game/sosmed sebelum melakukan pekerjaan lain yang perlu? (Misalnya, sebelum memulai bekerja di kantor/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed? Setelah istirahat kerja/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed sebelum waktu kerja/sekolah tiba kembali? Sebelum berangkat ke kampus/sekolah apakah Anda mengecek gadgetemail/internet/game/sosmed? Seberapa sering?",
+    "Seberapa sering Anda mengecek gadget/email/internet/game/sosmed sebelum melakukan pekerjaan lain yang perlu? (Misalnya, sebelum memulai bekerja di kantor/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed? Setelah istirahat kerja/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed sebelum waktu kerja/sekolah tiba kembali? Sebelum berangkat ke kampus/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed? Seberapa sering?",
     "Seberapa sering kinerja atau produktivitas Anda berkurang karena gadget/Internet/bermain game/sosmed?",
     "Seberapa sering Anda memberikan argumen “pembenaran” atau tidak berterus terang ketika seseorang menanyakan tentang apa yang Anda lakukan selama online/bermain gadget/game/sosmed?",
     "Seberapa sering Anda menghalau pikiran-pikiran yang mengganggu tentang kehidupan Anda dengan pikiran-pikiran yang menyenangkan tentang internet/bermain gadget/game/sosmed?",
