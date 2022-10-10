@@ -27,26 +27,26 @@ function App() {
   const ansScore = [1, 2, 3, 4, 5];
 
   const questionSets = [
-    "Seberapa sering Anda menggunakan gadget internet/bermain game dengan lama yang melebihi waktu yang Anda inginkan? (Misalnya Anda hanya ingin online 1 jam, ternyata setelah berinternet/bermain game jadinya online 3 jam. Kondisi seperti ini seberapa sering Anda alami?)",
-    "Seberapa sering Anda mengabaikan pekerjaan di rumah karena ingin online/ bermain gadget/ game lebih lama?",
-    "Seberapa sering Anda lebih memilih kesenangan berinternet/ bermain gadget/game dibanding bercengkerama/ berkumpul dengan keluarga?",
-    "Seberapa sering Anda menjalin hubungan baru dengan pengguna gadget/internet/ game online yang bersahabat?",
+    "Seberapa sering Anda menggunakan gadget/internet/game/sosmed dengan lama yang melebihi waktu yang Anda inginkan? (Misalnya Anda hanya ingin online 1 jam, ternyata setelah berinternet/bermain game jadinya online 3 jam. Kondisi seperti ini seberapa sering Anda alami?)",
+    "Seberapa sering Anda mengabaikan pekerjaan di rumah karena ingin online/ bermain gadget/game/sosmed lebih lama?",
+    "Seberapa sering Anda lebih memilih kesenangan berinternet/ bermain gadget/internet/game/sosmed dibanding bercengkerama/ berkumpul dengan keluarga?",
+    "Seberapa sering Anda menjalin hubungan baru dengan pengguna gadget/internet/game/sosmed yang bersahabat?",
     "Seberapa sering orang-orang terdekat Anda (orang tua, suami/istri, saudara, teman akrab) menegur/mengeluh tentang waktu yang Anda habiskan di dunia online/bermain gadget/game?",
-    "Seberapa sering tugas kantor atau tugas sekolah/kuliah Anda terbengkalai karena waktu yang Anda habiskan dengan berinternet/bermain gadget/ game?",
-    "Seberapa sering Anda mengecek gadget/email/internet/game sebelum melakukan pekerjaan lain yang perlu? (Misalnya, sebelum memulai bekerja di kantor/sekolah apakah Anda mengecek email/internet/game? Setelah istirahat kerja/sekolah apakah Anda mengecek email/internet/ game sebelum waktu kerja/sekolah tiba kembali? Sebelum berangkat ke kampus/sekolah apakah Anda mengecek email/internet/ game? Seberapa sering?",
-    "Seberapa sering kinerja atau produktivitas Anda berkurang karena gadget/Internet/bermain game?",
-    "Seberapa sering Anda memberikan argumen “pembenaran” atau tidak berterus terang ketika seseorang menanyakan tentang apa yang Anda lakukan selama online/bermain gadget/game?",
-    "Seberapa sering Anda menghalau pikiran-pikiran yang mengganggu tentang kehidupan Anda dengan pikiran-pikiran yang menyenangkan tentang internet/bermain gadget/game?",
-    "Seberapa sering Anda memikirkan bahwa Anda akan online/bermain gadget/game lagi? (Misalnya dalam perjalanan pulang ke rumah, Anda sudah mewanti-wanti akan online/bermain gadget/game saat tiba di rumah). Seberapa sering ada pikiran seperti ini?",
-    "Seberapa sering Anda merasa khawatir bahwa hidup tanpa gadget/Internet/ bermain game akan membosankan, hampa, dan tanpa kegembiraan?",
-    "Seberapa sering Anda merasa jengkel, menggerutu, atau merasa sangat terganggu jika seseorang mengganggu saat Anda sedang online/bermain gadget/game?",
+    "Seberapa sering tugas kantor atau tugas sekolah/kuliah Anda terbengkalai karena waktu yang Anda habiskan dengan berinternet/bermain gadget/game/sosmed?",
+    "Seberapa sering Anda mengecek gadget/email/internet/game/sosmed sebelum melakukan pekerjaan lain yang perlu? (Misalnya, sebelum memulai bekerja di kantor/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed? Setelah istirahat kerja/sekolah apakah Anda mengecek gadget/email/internet/game/sosmed sebelum waktu kerja/sekolah tiba kembali? Sebelum berangkat ke kampus/sekolah apakah Anda mengecek gadgetemail/internet/game/sosmed? Seberapa sering?",
+    "Seberapa sering kinerja atau produktivitas Anda berkurang karena gadget/Internet/bermain game/sosmed?",
+    "Seberapa sering Anda memberikan argumen “pembenaran” atau tidak berterus terang ketika seseorang menanyakan tentang apa yang Anda lakukan selama online/bermain gadget/game/sosmed?",
+    "Seberapa sering Anda menghalau pikiran-pikiran yang mengganggu tentang kehidupan Anda dengan pikiran-pikiran yang menyenangkan tentang internet/bermain gadget/game/sosmed?",
+    "Seberapa sering Anda memikirkan bahwa Anda akan online/bermain gadget/game lagi? (Misalnya dalam perjalanan pulang ke rumah, Anda sudah mewanti-wanti akan online/bermain gadget/game/sosmed saat tiba di rumah). Seberapa sering ada pikiran seperti ini?",
+    "Seberapa sering Anda merasa khawatir bahwa hidup tanpa gadget/Internet/bermain game/sosmed akan membosankan, hampa, dan tanpa kegembiraan?",
+    "Seberapa sering Anda merasa jengkel, menggerutu, atau merasa sangat terganggu jika seseorang mengganggu saat Anda sedang online/bermain gadget/game/sosmed?",
     "Seberapa sering Anda tidur terlambat di malam hari karena berinternet/ bermain gadget/game?",
-    "Seberapa sering Anda merasa terikat dengan Internet saat off-line, atau membayangkan Anda sedang online/ bermain gadget/game?",
-    "Seberapa sering Anda mengatakan atau bergumam dalam hati “sebentar lagi deh saya off” saat online/ bermain gadget/game?",
-    "Seberapa sering Anda mencoba mengurangi porsi waktu yang Anda habiskan online/ bermain gadget/ game namun gagal?",
-    "Seberapa sering Anda mencoba menyembunyikan/ berbohong berapa lama Anda telah online/ bermain gadget/game?",
-    "Seberapa sering Anda lebih memilih menghabiskan banyak waktu dengan online/ bermain gadget/game dibanding pergi bersama orang lain?",
-    "Seberapa sering Anda merasa depresi, tidak mood, atau grogi (nervous) saat Anda offline, yang mana akan hilang seketika ketika Anda kembali online/ bermain gadget/game?"
+    "Seberapa sering Anda merasa terikat dengan Internet saat off-line, atau membayangkan Anda sedang online/ bermain gadget/game/sosmed?",
+    "Seberapa sering Anda mengatakan atau bergumam dalam hati “sebentar lagi deh saya off” saat online/ bermain gadget/game/sosmed?",
+    "Seberapa sering Anda mencoba mengurangi porsi waktu yang Anda habiskan online/bermain gadget/game/sosmed namun gagal?",
+    "Seberapa sering Anda mencoba menyembunyikan/berbohong berapa lama Anda telah online/bermain gadget/game/sosmed?",
+    "Seberapa sering Anda lebih memilih menghabiskan banyak waktu dengan online/bermain gadget/game/sosmed dibanding pergi bersama orang lain?",
+    "Seberapa sering Anda merasa depresi, tidak mood, atau grogi (nervous) saat Anda offline, yang mana akan hilang seketika ketika Anda kembali online/bermain gadget/game/sosmed?"
   ]
 
   const testUrl = (window.location != window.parent.location)
