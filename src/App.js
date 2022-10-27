@@ -92,7 +92,9 @@ function App() {
     doc.setFontSize(22);    
     doc.text(20,20, "Hasil Gadget Internet and Game Addiction Test");
     doc.setFontSize(12);
-    doc.autoTable(col, rows, { startY: 30, margin: {left: 20, right: 20}, willDrawCell: function(data) {
+    doc.text(20,25, "Nama   : " + name);
+    doc.text(20,30, "Sekolah: " + sekolah);
+    doc.autoTable(col, rows, { startY: 32, margin: {left: 20, right: 20}, willDrawCell: function(data) {
       var doc = data.doc;
       var rows = data.table.body;
       if (data.row.index === rows.length - 1) {
