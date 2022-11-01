@@ -2,7 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import AsyncSelect from 'react-select/async';
+import { CSVLink, CSVDownload } from "react-csv";
+import { FaTable, FaDownload } from "react-icons/fa";
 import {EmailShareButton,
   FacebookShareButton,
   TelegramShareButton,
@@ -14,6 +17,8 @@ import {EmailShareButton,
   WhatsappIcon,
   EmailIcon} from 'react-share';
 
+import {school, addAnswers, getAnswers} from './components/API/API'
+
 function App() {
   const [pgIdx, setPgIdx] = useState(1);
   const [score, setScore] = useState([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]);
@@ -23,6 +28,8 @@ function App() {
   const [name, setName] = useState('');
   const [kelas, setKelas] = useState(1);
   const [sekolah, setSekolah] = useState('');
+  const [firstCur, setFirstCur] = useState(true);
+  const [dataList, setDataList] = useState([]);
   const answers = ["Jarang", "Kadang-Kadang", "Sering", "Sangat Sering", "Selalu"];
   const ansScore = [1, 2, 3, 4, 5];
 
@@ -121,40 +128,123 @@ function App() {
     doc.save('Hasil_Gadget_Internet_and_Game_Addiction_Test.pdf');
   }
 
-  const ProgressBar = (props) => {
-    const { bgcolor, completed } = props;
+  // const ProgressBar = (props) => {
+  //   const { bgcolor, completed } = props;
   
-    const containerStyles = {
-      height: 20,
-      width: '60%',
-      backgroundColor: "#e0e0de",
-      borderRadius: 50,
-      marginLeft: '20%',
-      marginRight: '20%'
-    }
+  //   const containerStyles = {
+  //     height: 20,
+  //     width: '60%',
+  //     backgroundColor: "#e0e0de",
+  //     borderRadius: 50,
+  //     marginLeft: '20%',
+  //     marginRight: '20%'
+  //   }
   
-    const fillerStyles = {
-      height: '100%',
-      width: `${completed}%`,
-      backgroundColor: bgcolor,
-      borderRadius: 'inherit',
-      textAlign: 'right'
-    }
+  //   const fillerStyles = {
+  //     height: '100%',
+  //     width: `${completed}%`,
+  //     backgroundColor: bgcolor,
+  //     borderRadius: 'inherit',
+  //     textAlign: 'right'
+  //   }
   
-    const labelStyles = {
-      padding: 5,
-      color: 'black',
-      fontWeight: 'bold'
-    }
+  //   const labelStyles = {
+  //     padding: 5,
+  //     color: 'black',
+  //     fontWeight: 'bold'
+  //   }
   
-    return (
-      <div style={containerStyles}>
-        <div style={fillerStyles}>
-          <span style={labelStyles}>{completed}%</span>
-        </div>
-      </div>
-    );
+  //   return (
+  //     <div style={containerStyles}>
+  //       <div style={fillerStyles}>
+  //         <span style={labelStyles}>{completed}%</span>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+
+  const loadOptions = (inputValue, callback) => {
+    setTimeout(() => {
+      school({
+        whereKeyValues: {
+          nama: {
+            "$regex": inputValue,
+            "$options": "i"
+          }
+        },
+        orderKeyValues: {
+          nama: 1
+        },
+        limit: 20
+      })
+      .then(response => {
+        console.log(response.data);
+        const options = [];
+        response.data.Data.forEach(e => {
+            options.push({
+                label: e.nama,
+                value: e.nama
+            })
+        });
+        callback(options);
+    })
+      .catch(error => {
+          callback([]);
+      });
+    }, 1000);
   };
+
+  const csvLink = React.createRef();
+
+  useEffect(() => {
+      console.log(firstCur);
+      if(!firstCur) {
+          csvLink.current.link.click();
+          setFirstCur(true);
+      }
+  }, [dataList]);
+
+  const downloadAsCSV = () => {
+    var data_to_download = [];
+    setFirstCur(false);
+    getAnswers({
+      whereKeyValues: {
+        sekolah: sekolah
+      }
+    }).then(currentRecords => {
+      console.log(currentRecords.data);
+      var modQuestions = questionSets;
+      for(var j = 0; j < modQuestions.length; j++) {
+        console.log("ini jalan " + j + ", isinya: " + modQuestions[j])
+        modQuestions[j] = modQuestions[j].replace(/,/g, '\uFF0C');
+      }
+      
+
+      for (var i = 0; i < currentRecords.data.Data.length; i++) {
+          let record_to_download = {};
+          let x = currentRecords.data.Data[i];
+          console.log("ini x: ", x);
+          // console.log(currentRecords[i].cells);
+          record_to_download['No'] = i+1
+          record_to_download['Nama'] = x.nama;
+          record_to_download['Sekolah'] = x.sekolah.replace(/,/g, '\uFF0C');
+          record_to_download['Kelas'] = x.kelas;
+          let p = x.jawaban;
+          for(var j = 0; j < modQuestions.length; j++) {
+            record_to_download[modQuestions[j]] = p[j] === 1 ? 'Jarang' : p[j] === 2 ? 'Kadang-Kadang' : p[j] === 3 ? 'Sering' : p[j] === 4 ? 'Sangat Sering' : 'Selalu';
+          }
+          data_to_download.push(record_to_download);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+        console.log('Ini', data_to_download);
+        setDataList(data_to_download);
+    });
+    return [{}];
+}
 
   return (
     <div className="App">
@@ -190,7 +280,13 @@ function App() {
           }}>Mulai</button>
           <div className="App-body-intro-bottom"><h5>Referensi:</h5>
           <h5>{"dr. Lahargo Kembaren SpJk, Psikiater dan Kepala Instalasi Rehabilitasi Psikososial RS. Jiwa dr. H. Marzoeki Mahdi, Bogor"}</h5>
-        </div></div> :
+        </div>
+        <div>
+          <button id="downloadrekap" onClick={()=> {
+            setPgIdx(4);
+          }}>Download Rekap Kuesioner</button>
+        </div>
+        </div> :
       pgIdx === 2 ? 
         question === -1 ? <div className="App-body-choice"><div className="App-body-intro-form">
           <div className="App-body-intro-form-left">
@@ -209,8 +305,12 @@ function App() {
                 return <option value={x}>{x}</option>
               })}
             </select>
-            <input type="text" placeholder="SD Contoh 1" name="sekolah" value={sekolah} onChange={(e) => {
+            {/* <input type="text" placeholder="SD Contoh 1" name="sekolah" value={sekolah} onChange={(e) => {
               setSekolah(e.currentTarget.value);
+            }}/> */}
+            <AsyncSelect cacheOptions defaultOptions placeholder={"Pilih sekolah..."} loadOptions={loadOptions} onChange={(e) => {
+              console.log(e);
+              setSekolah(e.value);
             }}/>
           </div>
         </div>
@@ -242,12 +342,25 @@ function App() {
             x+=element;
           });
           let candu = finalScore <= 49 ? "Rendah" : finalScore <= 79 ? "Sedang" : "Berat"
+
+          addAnswers({
+            nama: name,
+            kelas: kelas,
+            sekolah: sekolah,
+            jawaban: score
+          })
+          .then(response => {
+            console.log(response.data);
+          })
+
           setTitle("Saya, " + name + ", Kelas " + kelas.toString() + ", sekolah di " + sekolah + ", telah mengikuti test kecanduan gadget di " + webName + ".\nHasilnya Kecanduan " + candu + ".\nApa hasil tes kamu? Klik " + testUrl + " untuk melakukan tes kecanduan gadget.\nTerima kasih.\n" + hashtag);
           setFinalScore(x);
           setPgIdx(3);
+
         }}>Submit</button>
       }
       </div> :
+      pgIdx === 3 ?
       <div className="App-body-result">
         <h3>Tingkat ketergantungan Anda:</h3>
         {/* <ProgressBar key={1} bgcolor={finalScore <= 49 ? "green" : finalScore <= 79 ? "yellow" : "red"} completed={Math.floor((finalScore-20)*10/8)} /> */}
@@ -255,7 +368,7 @@ function App() {
         <h4>{finalScore <= 49 ? "Anda adalah pengguna gadget/internet/game/sosmed sebagaimana umumnya. Anda mungkin terkadang menggunakan gadget/internet/game/sosmed sedikit agak lama namun anda masih bisa mengontrolnya."
           : finalScore <= 79 ? "Anda terkadang mengalami permasalahan dengan penggunaan gadget/internet/game/sosmed yang berlebihan. Anda harus mulai mempertimbangkan dampak buruknya bagi anda."
           : "Penggunaan gadget/internet/game/sosmed anda menyebabkan masalah yang sangat besar bagi kehidupan anda. Mulailah memahami apakah anda mempunyai masalah dalam menjalani hidup dan penggunan gadget/internet/game/sosmed yang berlebih justru hanya akan menambah parah keadaan anda. Segeralah mencari pertolongan, ada baiknya anda berkonsultasi dengan psikiater di kota anda."}</h4>
-        <button id="download" onClick={download}>Download Hasil</button>
+        <button id="download" onClick={download}><FaDownload/>Download Hasil</button>
         <button id="restart" onClick={()=> {
           setQuestion(-1);
           setPgIdx(1);
@@ -298,6 +411,23 @@ function App() {
         <div className="App-body-result-bottom"><h5>Referensi:</h5>
           <h5>{"dr. Lahargo Kembaren SpJk, Psikiater dan Kepala Instalasi Rehabilitasi Psikososial RS. Jiwa dr. H. Marzoeki Mahdi, Bogor"}</h5>
         </div>
+      </div>
+      :
+      <div>
+        <div id="select-download"><AsyncSelect cacheOptions defaultOptions placeholder={"Pilih sekolah untuk di-download..."} loadOptions={loadOptions} onChange={(e) => {
+          console.log(e);
+          setSekolah(e.value);
+        }}/></div>
+        <div>
+            <button id="download" onClick={downloadAsCSV}><FaTable/>Download as CSV</button>
+            {!firstCur ? <p>Tunggu sebentar...</p> : null}
+            <CSVLink data={dataList} filename={'RekapKuesionerKecanduanGadget_' + sekolah + '.csv'} ref={csvLink} target="_blank" className="hidden"/>
+        </div>
+        <button id="restart" onClick={()=> {
+          setQuestion(-1);
+          setPgIdx(1);
+        }}>Kembali</button>
+
       </div>
       }
       </div>

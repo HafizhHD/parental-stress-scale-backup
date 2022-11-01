@@ -49,6 +49,7 @@
   text-align: left;
   display: grid;
   width: max-content;
+  min-width: 15vw;
   grid-template-rows: repeat(3, max-content);
   grid-row-gap: 0.5em;
 }
@@ -125,6 +126,12 @@ button {
   margin: 15px;
 }
 
+#downloadrekap {
+  padding: 3px;
+  font-size: 12px;
+  background-color: #228822;
+}
+
 #start {
   background-color: #8888EE;
 }
@@ -143,6 +150,10 @@ button {
 
 .App-link {
   color: #61dafb;
+}
+
+#select-download {
+  margin: 0 25vw;
 }
 
 @keyframes App-logo-spin {
