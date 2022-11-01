@@ -230,9 +230,13 @@ function App() {
           record_to_download['Sekolah'] = x.sekolah.replace(/,/g, '\uFF0C');
           record_to_download['Kelas'] = x.kelas;
           let p = x.jawaban;
+          var tot = 0;
           for(var j = 0; j < modQuestions.length; j++) {
-            record_to_download[modQuestions[j]] = p[j] === 1 ? 'Jarang' : p[j] === 2 ? 'Kadang-Kadang' : p[j] === 3 ? 'Sering' : p[j] === 4 ? 'Sangat Sering' : 'Selalu';
+            tot += p[j];
+            record_to_download[modQuestions[j]] = p[j] === 1 ? '1 (Jarang)' : p[j] === 2 ? '2 (Kadang-Kadang)' : p[j] === 3 ? '3 (Sering)' : p[j] === 4 ? '4 (Sangat Sering)' : '5 (Selalu)';
           }
+          record_to_download['Total'] = tot;
+          record_to_download['Tingkat Kecanduan'] = tot <= 49 ? 'Ringan' : tot <= 79 ? 'Sedang' : 'Berat';
           data_to_download.push(record_to_download);
       }
     })
